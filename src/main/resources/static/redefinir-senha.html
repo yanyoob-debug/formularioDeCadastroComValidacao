@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Redefinir senha</title><link rel="stylesheet" href="css/style.css"></head>
+<body><main class="pagina"><section class="cartao"><div class="marca" aria-hidden="true">C</div><header><p class="boas-vindas">SEGURANÇA</p><h1>Redefinir senha</h1><p class="subtitulo">Escolha uma nova senha para sua conta.</p></header>
+  <form id="formulario-redefinir" novalidate>
+    <div class="grupo-campo"><label for="nova-senha">Nova senha</label><div class="campo-senha"><input id="nova-senha" type="password" autocomplete="new-password" placeholder="Digite sua nova senha" required><button class="mostrar-senha" type="button" data-alvo="nova-senha">Mostrar</button></div><small class="erro" id="erro-nova-senha"></small></div>
+    <div class="grupo-campo"><label for="confirmar-nova-senha">Confirmar nova senha</label><div class="campo-senha"><input id="confirmar-nova-senha" type="password" autocomplete="new-password" placeholder="Repita sua nova senha" required><button class="mostrar-senha" type="button" data-alvo="confirmar-nova-senha">Mostrar</button></div><small class="erro" id="erro-confirmar-nova-senha"></small></div>
+    <p id="mensagem-redefinir" class="mensagem" role="status"></p><button class="botao-principal" type="submit">Alterar senha</button><p class="rodape"><a href="/">Voltar para entrar</a></p>
+  </form>
+</section></main><script>
+const senha = document.querySelector('#nova-senha'), confirmar = document.querySelector('#confirmar-nova-senha');
+const forte = v => /^(?=.*[a-z])(?=.*[A-Z])(?=.*[^A-Za-z0-9\s]).{8,}$/.test(v);
+const erro = (c, t) => { document.querySelector('#erro-' + c.id).textContent = t; c.classList.toggle('invalido', !!t); return !t; };
+document.querySelectorAll('.mostrar-senha').forEach(b => b.onclick = () => { const c = document.querySelector('#' + b.dataset.alvo); c.type = c.type === 'password' ? 'text' : 'password'; b.textContent = c.type === 'password' ? 'Mostrar' : 'Ocultar'; });
+document.querySelector('#formulario-redefinir').onsubmit = async e => { e.preventDefault(); const valida = erro(senha, !forte(senha.value) ? 'A senha deve ter ao menos 8 caracteres, incluindo letra maiúscula, minúscula e símbolo.' : '') && erro(confirmar, confirmar.value !== senha.value ? 'As senhas não coincidem.' : ''); if (!valida) return; const resposta = await fetch('/api/usuarios/redefinir-senha', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({token:new URLSearchParams(location.search).get('token'), senha:senha.value}) }); const dados = await resposta.json(); const m = document.querySelector('#mensagem-redefinir'); m.textContent = dados.mensagem; m.className = 'mensagem ' + (resposta.ok ? 'sucesso' : 'erro-geral'); };
+</script></body></html>

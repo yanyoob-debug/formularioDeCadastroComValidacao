@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Conta</title><link rel="stylesheet" href="css/style.css"></head>
+<body><main class="pagina"><div class="folha folha-um" aria-hidden="true"></div><div class="folha folha-dois" aria-hidden="true"></div><section class="cartao" aria-labelledby="titulo">
+  <div class="marca" aria-hidden="true">✦</div><header><p class="boas-vindas">BEM-VINDO(A)</p><h1 id="titulo">Criar conta</h1><p id="subtitulo" class="subtitulo">Preencha seus dados para começar.</p></header>
+  <form id="formulario-cadastro" novalidate>
+    <div class="grupo-campo"><label for="nome">Nome completo</label><input id="nome" type="text" autocomplete="name" placeholder="Nome e sobrenome" required><small class="erro" id="erro-nome"></small></div>
+    <div class="grupo-campo"><label for="email">E-mail</label><input id="email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required><small class="erro" id="erro-email"></small></div>
+    <div class="grupo-campo"><label for="senha">Senha</label><div class="campo-senha"><input id="senha" type="password" autocomplete="new-password" placeholder="Digite sua senha" required><button class="mostrar-senha" type="button" data-alvo="senha">Mostrar</button></div><small class="erro" id="erro-senha"></small></div>
+    <div class="grupo-campo"><label for="confirmar-senha">Confirmar senha</label><div class="campo-senha"><input id="confirmar-senha" type="password" autocomplete="new-password" placeholder="Repita sua senha" required><button class="mostrar-senha" type="button" data-alvo="confirmar-senha">Mostrar</button></div><small class="erro" id="erro-confirmar-senha"></small></div>
+    <p id="mensagem-geral" class="mensagem" role="status"></p><button class="botao-principal" type="submit">Cadastrar</button>
+  </form>
+  <p id="rodape-cadastro" class="rodape">Já possui uma conta? <a href="#login" data-tela="login">Entrar</a></p>
+  <form id="formulario-login" class="oculto" novalidate>
+    <div class="grupo-campo"><label for="login-email">E-mail</label><input id="login-email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required><small class="erro" id="erro-login-email"></small></div>
+    <div class="grupo-campo"><label for="login-senha">Senha</label><div class="campo-senha"><input id="login-senha" type="password" autocomplete="current-password" placeholder="Digite sua senha" required><button class="mostrar-senha" type="button" data-alvo="login-senha">Mostrar</button></div><small class="erro" id="erro-login-senha"></small></div>
+    <p id="mensagem-login" class="mensagem" role="status"></p><button class="botao-principal" type="submit">Entrar</button><p class="link-auxiliar"><a href="#recuperar" data-tela="recuperar">Esqueceu sua senha?</a></p><p class="rodape">Ainda não possui uma conta? <a href="#cadastro" data-tela="cadastro">Criar conta</a></p>
+  </form>
+  <form id="formulario-recuperar" class="oculto" novalidate>
+    <p class="aviso">Informe seu e-mail. Se houver uma conta associada, enviaremos as instruções para redefinir a senha.</p><div class="grupo-campo"><label for="recuperar-email">E-mail</label><input id="recuperar-email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required><small class="erro" id="erro-recuperar-email"></small></div><p id="mensagem-recuperar" class="mensagem" role="status"></p><button class="botao-principal" type="submit">Enviar instruções</button><p class="rodape"><a href="#login" data-tela="login">Voltar para entrar</a></p>
+  </form>
+</section></main><script src="js/script.js"></script></body></html>
